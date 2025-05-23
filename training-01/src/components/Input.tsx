@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 
-type InputProps = {
+export type InputProps = {
   addTodo: (value: string) => void;
 };
 

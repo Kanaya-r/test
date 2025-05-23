@@ -3,14 +3,18 @@ import { useReducer } from 'react'
 import Input from './components/Input'
 import './App.css'
 
-function App() {
-  type Todo = {
-    id: number;
-    status: 'active' | 'completed';
-    text: string;
-  };
+export type Todo = {
+  id: number;
+  status: 'active' | 'completed';
+  text: string;
+};
 
-  type Action = { type: 'add'; text: string };
+export type Action = {
+  type: 'add';
+  text: string
+};
+
+function App() {
 
   const todoReducer = (state: Todo[], action: Action): Todo[] => {
     switch ( action.type ) {
