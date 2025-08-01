@@ -1,18 +1,18 @@
-import { useRef } from 'react';
+import { useRef } from 'react'
 
-export type InputProps = {
-  addTodo: (value: string) => void;
-};
+type InputProps = {
+  addTodo: (value: string) => void
+}
 
 const Input = ({ addTodo }: InputProps) => {
-  const inputRef = useRef<HTMLInputElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null)
 
   const submit = () => {
-    const value = inputRef.current?.value || '';
+    const value = inputRef.current?.value || ''
     if (value.trim()) {
-      addTodo(value);
+      addTodo(value)
       if (inputRef.current) {
-        inputRef.current.value = '';
+        inputRef.current.value = ''
       }
     }
   }
@@ -25,4 +25,4 @@ const Input = ({ addTodo }: InputProps) => {
   )
 }
 
-export default Input;
+export default Input

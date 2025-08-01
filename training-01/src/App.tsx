@@ -3,19 +3,18 @@ import { useReducer } from 'react'
 import Input from './components/Input'
 import './App.css'
 
-export type Todo = {
-  id: number;
-  status: 'active' | 'completed';
-  text: string;
-};
-
-export type Action = {
-  type: 'add';
+interface Todo {
+  id: number
+  status: 'active' | 'completed'
   text: string
-};
+}
+
+interface Action {
+  type: 'add'
+  text: string
+}
 
 function App() {
-
   const todoReducer = (state: Todo[], action: Action): Todo[] => {
     switch ( action.type ) {
       case 'add':
@@ -26,9 +25,9 @@ function App() {
             status: 'active',
             text: action.text
           }
-        ];
+        ]
       default:
-        return state;
+        return state
     }
   }
 
@@ -38,12 +37,12 @@ function App() {
       status: 'active',
       text: 'todo1'
     }
-  ];
+  ]
 
-  const [ todos, dispatch ] = useReducer( todoReducer, initialTodos );
+  const [ todos, dispatch ] = useReducer( todoReducer, initialTodos )
 
   const addTodo = (text: string) => {
-    dispatch({ type: 'add', text });
+    dispatch({ type: 'add', text })
   }
 
 
