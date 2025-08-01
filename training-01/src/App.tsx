@@ -1,9 +1,10 @@
 /* TODO 追加／完了機能に加え、All | Active | Completed のタブで表示を切り替えられるようにする。 */
 import { useReducer } from 'react'
 import Input from './components/Input'
+import List from './components/List'
 import './App.css'
 
-interface Todo {
+export interface Todo {
   id: number
   status: 'active' | 'completed'
   text: string
@@ -45,20 +46,10 @@ function App() {
     dispatch({ type: 'add', text })
   }
 
-
   return (
     <>
       <Input addTodo={ addTodo } />
-      <ul>
-        { todos.map((todo: Todo) => {
-          return (
-            <li key={todo.id}>
-              <input type="checkbox" />
-              {todo.text}
-            </li>
-          )
-        })}
-      </ul>
+      <List todos={ todos } />
       <button type="button">完了</button>
     </>
   )
