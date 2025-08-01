@@ -7,6 +7,13 @@ type InputProps = {
 const Input = ({ addTodo }: InputProps) => {
   const inputRef = useRef<HTMLInputElement>(null)
 
+  const handleInputEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter' && !e.nativeEvent.isComposing) {
+      e.preventDefault()
+      submit()
+    }
+  }
+
   const submit = () => {
     const value = inputRef.current?.value || ''
     if (value.trim()) {
@@ -19,7 +26,7 @@ const Input = ({ addTodo }: InputProps) => {
 
   return (
     <>
-      <input type="text" ref={inputRef}/>
+      <input type="text" ref={inputRef} onKeyDown={handleInputEnter} />
       <button type="button" onClick={ submit }>追加</button>
     </>
   )
