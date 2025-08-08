@@ -2,6 +2,7 @@
 import { useEffect, useReducer } from 'react'
 import CreateTodoInput from './components/CreateTodoInput'
 import TodoList from './components/TodoList'
+import CompletedTodoList from './components/CompletedTodoList'
 import './App.css'
 
 export type Todo = {
@@ -73,6 +74,7 @@ function App() {
     <>
       <CreateTodoInput addTodo={ addTodo } />
       <TodoList todoList={ todoList } removeTodo={ removeTodo } completeTodo={ completeTodo }/>
+      <CompletedTodoList todoList={ todoList } removeTodo={ removeTodo } />
       {/* <button type="button" >完了</button> */}
     </>
   )
