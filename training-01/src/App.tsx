@@ -1,5 +1,5 @@
 /* TODO 追加／完了機能に加え、All | Active | Completed のタブで表示を切り替えられるようにする。 */
-import { useReducer } from 'react'
+import { useEffect, useReducer } from 'react'
 import Input from './components/Input'
 import List from './components/List'
 import './App.css'
@@ -18,7 +18,11 @@ type RemoveAction = {
   type: 'remove'
   todoId: number
 }
-type TodoAction = AddTodoAction | RemoveAction
+type CompleteAction = {
+  type: 'complete'
+  todoId: number
+}
+type TodoAction = AddTodoAction | RemoveAction | CompleteAction
 
 function App() {
   const initialTodoList: Todo[] = []
@@ -36,6 +40,16 @@ function App() {
         ]
       case 'remove':
         return state.filter(todo => todo.id !== action.todoId)
+      case 'complete':
+        return state.map(todo => {
+          if (todo.id === action.todoId) {
+            return {
+              ...todo,
+              status: todo.status === 'active' ? 'completed' : 'active'
+            }
+          }
+          return todo
+        })
       default:
         return state
     }
@@ -51,11 +65,15 @@ function App() {
     dispatch({ type: 'remove', todoId })
   }
 
+  const completeTodo = (todoId: number) => {
+    dispatch({ type: 'complete', todoId })
+  }
+
   return (
     <>
       <Input addTodo={ addTodo } />
-      <List todoList={ todoList } removeTodo={ removeTodo } />
-      <button type="button">完了</button>
+      <List todoList={ todoList } removeTodo={ removeTodo } completeTodo={ completeTodo }/>
+      {/* <button type="button" >完了</button> */}
     </>
   )
 }
