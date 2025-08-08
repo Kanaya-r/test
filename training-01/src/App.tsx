@@ -1,7 +1,7 @@
 /* TODO 追加／完了機能に加え、All | Active | Completed のタブで表示を切り替えられるようにする。 */
 import { useEffect, useReducer } from 'react'
-import Input from './components/Input'
-import List from './components/List'
+import CreateTodoInput from './components/CreateTodoInput'
+import TodoList from './components/TodoList'
 import './App.css'
 
 export type Todo = {
@@ -71,8 +71,8 @@ function App() {
 
   return (
     <>
-      <Input addTodo={ addTodo } />
-      <List todoList={ todoList } removeTodo={ removeTodo } completeTodo={ completeTodo }/>
+      <CreateTodoInput addTodo={ addTodo } />
+      <TodoList todoList={ todoList } removeTodo={ removeTodo } completeTodo={ completeTodo }/>
       {/* <button type="button" >完了</button> */}
     </>
   )
