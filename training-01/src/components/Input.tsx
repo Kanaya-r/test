@@ -22,7 +22,6 @@ const Input = ({ addTodo }: InputProps) => {
 
   function submit() {
     const value = inputRef.current?.value || ''
-    console.log(value)
     if (value.trim()) {
       addTodo(value)
       if (inputRef.current) {

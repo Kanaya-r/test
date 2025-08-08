@@ -1,14 +1,20 @@
-// import { useRef, useState } from 'react'
 import type { Todo } from '../App'
 
-function List({ todos }: { todos: Todo[] }) {
+type ListProps = {
+  todoList: Todo[]
+  removeTodo: (todoId: number) => void
+}
+
+function List({ todoList, removeTodo }: ListProps) {
+
   return (
     <ul>
-      { todos.map((todo: Todo) => {
+      { todoList.map(todo => {
         return (
           <li key={todo.id}>
             <input type="checkbox" />
-            {todo.text}
+            <span>{todo.text}</span>
+            <button type="button" onClick={ () => removeTodo(todo.id) } aria-label="ToDo削除"></button>
           </li>
         )
       })}

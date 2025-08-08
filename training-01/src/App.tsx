@@ -4,19 +4,26 @@ import Input from './components/Input'
 import List from './components/List'
 import './App.css'
 
-export interface Todo {
+export type Todo = {
   id: number
   status: 'active' | 'completed'
   text: string
 }
 
-interface Action {
+type AddTodoAction = {
   type: 'add'
   text: string
 }
+type RemoveAction = {
+  type: 'remove'
+  todoId: number
+}
+type TodoAction = AddTodoAction | RemoveAction
 
 function App() {
-  const todoReducer = (state: Todo[], action: Action): Todo[] => {
+  const initialTodoList: Todo[] = []
+
+  const todoReducer = (state: Todo[], action: TodoAction): Todo[] => {
     switch ( action.type ) {
       case 'add':
         return [
@@ -27,29 +34,27 @@ function App() {
             text: action.text
           }
         ]
+      case 'remove':
+        return state.filter(todo => todo.id !== action.todoId)
       default:
         return state
     }
   }
 
-  const initialTodos: Todo[] = [
-    {
-      id: 0,
-      status: 'active',
-      text: 'todo1'
-    }
-  ]
-
-  const [ todos, dispatch ] = useReducer( todoReducer, initialTodos )
+  const [ todoList, dispatch ] = useReducer( todoReducer, initialTodoList )
 
   const addTodo = (text: string) => {
     dispatch({ type: 'add', text })
   }
 
+  const removeTodo = (todoId: number) => {
+    dispatch({ type: 'remove', todoId })
+  }
+
   return (
     <>
       <Input addTodo={ addTodo } />
-      <List todos={ todos } />
+      <List todoList={ todoList } removeTodo={ removeTodo } />
       <button type="button">完了</button>
     </>
   )
