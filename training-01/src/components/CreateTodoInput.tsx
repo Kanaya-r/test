@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react'
+import { GrContact, GrAdd } from "react-icons/gr";
 
 type InputProps = {
   addTodo: (value: string) => void
@@ -32,10 +33,28 @@ const Input = ({ addTodo }: InputProps) => {
   }
 
   return (
-    <>
-      <input type="text" ref={inputRef} onInput={ handleInput } onKeyDown={ handleInputEnter } />
-      <button type="button" onClick={ submit } disabled={ isEmpty }>追加</button>
-    </>
+    <div className="inputContainer">
+      <div className="inputBox">
+        <i><GrContact color='#333'/></i>
+        <input
+          type="text"
+          ref={inputRef}
+          onInput={handleInput}
+          onKeyDown={handleInputEnter}
+          placeholder='タスクを作成しよう'
+          aria-label='タスク入力'
+        />
+      </div>
+      <button
+        type="button"
+        onClick={ submit }
+        disabled={ isEmpty }
+        className="inputButton"
+        aria-label='タスク追加'
+      >
+        <GrAdd color='#fff'/>
+      </button>
+    </div>
   )
 }
 
