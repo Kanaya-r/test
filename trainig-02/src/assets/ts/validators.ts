@@ -6,8 +6,8 @@ export function validateSpot(spot: StampSpot) {
 
   if (!spot.id) errors.push('必須：id')
   if (!spot.name) errors.push('必須：name')
-  if (typeof lat !== 'number' || lat < -90 || lat > 90) errors.push('不正値：緯度')
-  if (typeof lng !== 'number' || lng < -180 || lng > 180) errors.push('不正値：経度')
+  if (typeof lat !== 'number' || lat < 24 || lat > 46) errors.push('不正値：緯度')
+  if (typeof lng !== 'number' || lng < 123 || lng > 146) errors.push('不正値：経度')
   if (!Number.isFinite(spot.radiusM) || spot.radiusM <= 0) errors.push('radiusM > 0 である必要があります')
 
   return errors
