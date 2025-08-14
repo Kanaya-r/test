@@ -1,5 +1,6 @@
 /* TODO 追加／完了機能に加え、All | Active | Completed のタブで表示を切り替えられるようにする。 */
 import { useReducer } from 'react'
+import Modal from './components/Modal'
 import CreateTodoInput from './components/CreateTodoInput'
 import TodoList from './components/ActiveTodoList'
 import CompletedTodoList from './components/CompletedTodoList'
@@ -74,6 +75,7 @@ function App() {
     <>
       <h1>ToDo<br />App</h1>
       <div className="appContainer">
+        <Modal />
         <CreateTodoInput addTodo={ addTodo } />
         <TodoList todoList={ todoList } removeTodo={ removeTodo } completeTodo={ completeTodo }/>
         <CompletedTodoList todoList={ todoList } removeTodo={ removeTodo } />
