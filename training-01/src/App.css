@@ -1,0 +1,153 @@
+.appContainer {
+  padding: 50px 20px;
+  margin-inline: auto;
+  width: min(100%, 640px);
+  display: grid;
+  place-items: center;
+  row-gap: 60px;
+}
+
+.inputContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 10px;
+}
+.inputBox {
+  display: flex;
+  column-gap: 0.5em;
+  padding: 8px 11px;
+  width: 300px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  background-color: color-mix(in srgb, #fff 80%, transparent);
+  i {
+    display: grid;
+    place-items: center;
+  }
+  input {
+    width: 100%;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    color: #333;
+  }
+}
+.inputBox:focus-within {
+  border-color: #0073ff;
+}
+@media (any-hover: hover) {
+  .inputBox {
+    transition: border-color 0.2s ease-in-out;
+  }
+  .inputBox:hover {
+    border-color: #0073ff;
+  }
+}
+
+.inputButton {
+  --buttonColor: #0073ff;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  padding: 0;
+  background-color: var(--buttonColor);
+  cursor: pointer;
+  transition: opacity 0.25s;
+}
+.inputButton[disabled] {
+  opacity: 0.4;
+  pointer-events: none;
+}
+.inputButton:focus,
+.inputButton:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+.todoList {
+  padding: 20px;
+  width: 100%;
+  display: grid;
+  row-gap: 12px;
+  background-color: color-mix(in srgb, #fff 80%, transparent);
+  border-radius: 8px;
+  h2 {
+    display: flex;
+    align-items: center;
+    column-gap: 0.3em;
+  }
+  h2::before {
+    content: '';
+    display: block;
+    width: 0.5em;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background-color: var(--color);
+    box-shadow: 0 0 4px 3px color-mix(in srgb, var(--color) 60%, transparent);
+  }
+  .emptyMessage {
+    font-size: 16px;
+    font-weight: 700;
+  }
+  .buttonArea {
+    display: flex;
+    column-gap: 8px;
+  }
+  .listButton {
+    --buttonColor: #0073ff;
+    overflow: hidden;
+    display: grid;
+    place-items: center;
+    scale: 0;
+    padding: 0;
+    width: 30px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    background-color: var(--buttonColor);
+    cursor: pointer;
+    transition: scale 0.1s;
+  }
+  .listButton--red {
+    --buttonColor: #ff6767;
+  }
+  .listButton[disabled] {
+    opacity: 0.4;
+  }
+  .listButton:focus,
+  .listButton:focus-visible {
+    outline: 4px auto -webkit-focus-ring-color;
+  }
+  ul {
+    padding: 1em;
+    li {
+      display: flex;
+      align-items: center;
+      column-gap: 1em;
+      font-size: 20px;
+      font-weight: bold;
+      line-height: 1.5;
+    }
+    li:not(:first-child) {
+      padding-top: 1em;
+      margin-top: 1em;
+      border-top: 1px solid color-mix(in srgb, #fff 40%, transparent);
+    }
+    li:hover {
+      .listButton {
+        scale: 1;
+        transition: scale 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      }
+    }
+  }
+}
+.todoList--active {
+  --color: #98e9ff;
+}
+.todoList--completed {
+  --color: #98ffa9;
+}
