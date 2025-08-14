@@ -1,4 +1,3 @@
-/* TODO 追加／完了機能に加え、All | Active | Completed のタブで表示を切り替えられるようにする。 */
 import { useReducer } from 'react'
 import Modal from './components/Modal'
 import CreateTodoInput from './components/CreateTodoInput'
