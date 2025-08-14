@@ -11,16 +11,9 @@ export type StampSpot = {
   description?: string
 }
 
-export type LastPosition = LatLng & {
-  accuracyM?: number
-  timestamp?: number // Date.now() を入れておくと鮮度判定に使える
-}
-
-// ---- 将来のための型バージョン管理 ----
-export type ProgressV1 = {
+export type Progress = {
   v: 1
+  currentIndex: number
   obtainedSpotIds: string[]
-  lastPosition?: LastPosition
+  lastPosition?: { lat: number; lng: number; accuracyM?: number }
 }
-
-export type Progress = ProgressV1
