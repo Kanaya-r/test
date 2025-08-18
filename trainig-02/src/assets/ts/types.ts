@@ -11,9 +11,13 @@ export type StampSpot = {
   description?: string
 }
 
+export type CurrentLocation = LatLng & {
+  accuracyM?: number
+}
+
 export type Progress = {
   v: 1
   currentIndex: number
   obtainedSpotIds: string[]
-  lastPosition?: { lat: number; lng: number; accuracyM?: number }
+  lastPosition?: CurrentLocation
 }

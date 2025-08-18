@@ -3,7 +3,7 @@
 import type { Progress } from './types'
 
 const KEY = 'stamp-progress'
-const DEFAULT_PROGRESS: Progress = { v: 1, obtainedSpotIds: [] }
+const DEFAULT_PROGRESS: Progress = { v: 1, currentIndex: 0, obtainedSpotIds: [] }
 
 export function loadProgress(): Progress {
   const raw = localStorage.getItem(KEY)
