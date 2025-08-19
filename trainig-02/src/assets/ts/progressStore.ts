@@ -1,8 +1,8 @@
 import { useEffect, useMemo, useReducer } from 'react'
 import type { Progress, StampSpot, LatLng } from './types'
 import { withinRadius } from './geo'
+import { STORAGE_KEY } from './constants'
 
-const KEY = 'stamp-progress'
 const DEFAULT: Progress = { v: 1, currentIndex: 0, obtainedSpotIds: [] }
 
 type Action =
@@ -37,7 +37,7 @@ function reducer(state: Progress, action: Action): Progress {
 export function useProgress(spots: StampSpot[]) {
   function init(): Progress {
     try {
-      const raw = localStorage.getItem(KEY)
+      const raw = localStorage.getItem(STORAGE_KEY)
       if (!raw) return DEFAULT
       const obj = JSON.parse(raw)
       if (obj?.v === 1 && Array.isArray(obj?.obtainedSpotIds)) return obj
@@ -50,7 +50,7 @@ export function useProgress(spots: StampSpot[]) {
   const [state, dispatch] = useReducer(reducer, undefined, init)
 
   useEffect(() => {
-    localStorage.setItem(KEY, JSON.stringify(state))
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state))
   }, [state])
 
   const target: StampSpot | null = useMemo(() => {
