@@ -35,20 +35,19 @@ function reducer(state: Progress, action: Action): Progress {
 }
 
 export function useProgress(spots: StampSpot[]) {
-  const [state, dispatch] = useReducer(reducer, DEFAULT)
-
-  useEffect(() => {
-    const raw = localStorage.getItem(KEY)
-    if (!raw) return
+  function init(): Progress {
     try {
+      const raw = localStorage.getItem(KEY)
+      if (!raw) return DEFAULT
       const obj = JSON.parse(raw)
-      if (obj?.v === 1 && Array.isArray(obj?.obtainedSpotIds)) {
-        dispatch({ type: 'load', p: obj })
-      }
-    } catch (e) {
-      console.warn('[progress] parse error', (e as Error)?.message)
+      if (obj?.v === 1 && Array.isArray(obj?.obtainedSpotIds)) return obj
+    } catch {
+      console.warn('[progress] parse error')
     }
-  }, [])
+    return DEFAULT
+  }
+
+  const [state, dispatch] = useReducer(reducer, undefined, init)
 
   useEffect(() => {
     localStorage.setItem(KEY, JSON.stringify(state))
