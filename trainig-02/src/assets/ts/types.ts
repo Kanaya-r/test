@@ -21,3 +21,7 @@ export type Progress = {
   obtainedSpotIds: string[]
   lastPosition?: CurrentLocation
 }
+
+export type childrenText = {
+  children: React.ReactNode
+}
