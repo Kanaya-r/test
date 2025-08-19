@@ -10,7 +10,7 @@ export default function DevButton() {
 
   return (
     <button
-    className="w-full inline-flex items-center justify-center gap-2 rounded-xl bg-slate-900 text-white px-4 py-3 font-semibold shadow active:scale-[0.99]"
+    className="w-full inline-flex items-center justify-center gap-2 rounded-xl bg-slate-900 text-white px-4 py-3 font-semibold shadow active:scale-[0.99] cursor-pointer hover:opacity-80"
     onClick={() => { handleReset() }}
     title="開発用：進捗を初期化"
     >
