@@ -1,16 +1,14 @@
 import { useEffect, useMemo, useReducer } from 'react'
 import type { Progress, StampSpot, LatLng } from './types'
 import { withinRadius } from './geo'
-import { STORAGE_KEY } from './constants'
+import { STORAGE_KEY, MAX_ACCURACY_M } from './constants'
 
 const DEFAULT: Progress = { v: 1, currentIndex: 0, obtainedSpotIds: [] }
 
 type Action =
   | { type: 'load'; p: Progress }
-  | { type: 'pos'; lat: number; lng: number; accuracyM?: number }
+  | { type: 'pos'; lat: number; lng: number; accuracyM?: number; timestampMs?: number }
   | { type: 'advance'; spotId: string }
-
-const MAX_ACCURACY_M = 100 // 精度範囲（距離）※80〜120
 
 function reducer(state: Progress, action: Action): Progress {
   switch (action.type) {
@@ -19,7 +17,7 @@ function reducer(state: Progress, action: Action): Progress {
     case 'pos':
       return {
         ...state,
-        lastPosition: { lat: action.lat, lng: action.lng, accuracyM: action.accuracyM }
+        lastPosition: { lat: action.lat, lng: action.lng, accuracyM: action.accuracyM, timestampMs: action.timestampMs ?? Date.now() }
       }
     case 'advance': {
       if (state.obtainedSpotIds.includes(action.spotId)) return state

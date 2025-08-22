@@ -13,6 +13,7 @@ export type StampSpot = {
 
 export type CurrentLocation = LatLng & {
   accuracyM?: number
+  timestampMs?: number
 }
 
 export type Progress = {
@@ -22,6 +23,6 @@ export type Progress = {
   lastPosition?: CurrentLocation
 }
 
-export type childrenText = {
+export type ChildrenText = {
   children: React.ReactNode
 }
