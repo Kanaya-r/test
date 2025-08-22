@@ -19,7 +19,6 @@ export default function App() {
     },
     [dispatch]
   )
-  useGeolocation(onPos)
 
   const { refresh, status, lastError } = useGeolocation(onPos, {
     highAccuracy: true,
