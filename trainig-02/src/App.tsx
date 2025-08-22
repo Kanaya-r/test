@@ -8,6 +8,7 @@ import { useProgress } from './assets/ts/progressStore'
 
 import { H1 } from './components/HeroTitle'
 import DevButton from './components/DevButton'
+import Modal from './components/Modal'
 
 export default function App() {
   const { state, target, canStamp, stamp, maxAccuracyM, dispatch } = useProgress(SPOTS)
@@ -31,6 +32,7 @@ export default function App() {
     <div className="min-h-screen bg-gradient-to-b from-pink-50 via-amber-50 to-sky-50 p-4 flex items-start justify-center">
       <div className="grid gap-y-4 w-full max-w-sm">
         <H1>スタンプラリー</H1>
+        <Modal />
 
         <section className="rounded-2xl bg-white/80 backdrop-blur shadow-lg ring-1 ring-black/5 p-4">
           <div className="flex items-center gap-2 text-sm font-semibold text-slate-700">
