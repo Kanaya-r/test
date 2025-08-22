@@ -59,7 +59,8 @@ export function useGeolocation(
             onChange({
               lat: p2.coords.latitude,
               lng: p2.coords.longitude,
-              accuracyM: p2.coords.accuracy
+              accuracyM: p2.coords.accuracy,
+              timestampMs: p2.timestamp
             })
             setStatus('watching')
           },
@@ -84,6 +85,7 @@ export function useGeolocation(
 
   // 手動で一度だけ取得（「現在地更新」ボタンなど）
   const refresh = useCallback(() => {
+    if (status === 'requesting') return
     if (!('geolocation' in navigator)) {
       setStatus('unsupported')
       setLastError('Geolocation unsupported')
@@ -97,19 +99,20 @@ export function useGeolocation(
         onChange({
           lat: p.coords.latitude,
           lng: p.coords.longitude,
-          accuracyM: p.coords.accuracy
+          accuracyM: p.coords.accuracy,
+          timestampMs: p.timestamp
         })
         // refresh はウォッチ状態を変えない（既に回っていれば 'watching' のまま）
-        setStatus((s) => (watchIdRef.current != null ? 'watching' : 'idle'))
+        setStatus((watchIdRef.current != null ? 'watching' : 'idle'))
       },
       (err) => {
         console.warn('geolocation one-time error', err)
-        setStatus('error')
         setLastError(`(${err.code}): ${err.message}`)
+        setStatus((watchIdRef.current != null ? 'watching' : 'error'))
       },
       { enableHighAccuracy: highAccuracy, timeout: initialTimeoutMs, maximumAge: 0 }
     )
-  }, [onChange, highAccuracy, initialTimeoutMs])
+  }, [onChange, highAccuracy, initialTimeoutMs, status])
 
   // 可視性に応じて start/stop
   useEffect(() => {
