@@ -1,0 +1,15 @@
+.footer {
+  background-color: var(--foreground);
+  color: var(--color-foreground);
+  .footer_inr {
+    padding-block: 2rem;
+    margin-inline: auto;
+    width: min(100%, 40rem);
+  }
+  nav {
+    ul {
+      display: flex;
+      column-gap: 4em;
+    }
+  }
+}
