@@ -11,5 +11,12 @@
       display: flex;
       gap: 3em;
     }
+    li {
+      &.active {
+        a {
+          border-bottom: 1px solid currentColor;
+        }
+      }
+    }
   }
 }
