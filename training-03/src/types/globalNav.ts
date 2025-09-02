@@ -1,4 +1,4 @@
-export type NavItem = {
+export type globalNavItem = {
   label: string
   href: string
   exact?: boolean

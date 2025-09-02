@@ -3,9 +3,9 @@
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 
-import { NAV_ITEMS } from '@/lib/nav'
+import { NAV_ITEMS } from '@/lib/globalNavItems'
 
-import type { IsActive } from '@/types/nav'
+import type { IsActive } from '@/types/globalNav'
 
 import styles from './Header.module.scss'
 
