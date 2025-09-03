@@ -1,6 +1,6 @@
-import type { globalNavItem } from "../types/globalNav"
+import type { GlobalNavItem } from "../types/globalNav"
 
-export const NAV_ITEMS: globalNavItem[] = [
+export const NAV_ITEMS: GlobalNavItem[] = [
   { label: 'BLOG', href: '/blog/' },
   { label: 'CONTACT', href: '/contact/' }
 ] as const
