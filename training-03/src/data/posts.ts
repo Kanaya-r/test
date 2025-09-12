@@ -3,24 +3,24 @@ import type { Post } from '@/types/post'
 // ダミー記事データ
 export const posts: Post[] = [
   {
-    id: '1',
-    slug: 'HOGE',
+    date: '2025-01-01',
     title: 'Post - 01',
-    excerpt: 'This is the excerpt for the first post.',
-    publishedAt: '2025-01-01'
+    tag: ['HOGE'],
+    content: 'This is the content for the first post.',
+    likes: 0
   },
   {
-    id: '2',
-    slug: 'FUGA',
+    date: '2025-01-02',
     title: 'Post - 02',
-    excerpt: 'This is the excerpt for the second post.',
-    publishedAt: '2025-01-02'
+    tag: ['FUGA'],
+    content: 'This is the content for the second post.',
+    likes: 0
   },
   {
-    id: '3',
-    slug: 'HOGE',
+    date: '2025-01-03',
     title: 'Post - 03',
-    excerpt: 'This is the excerpt for the third post.',
-    publishedAt: '2025-01-02'
-  }
+    tag: ['HOGE', 'FUGA'],
+    content: 'This is the content for the third post.',
+    likes: 0
+  },
 ]

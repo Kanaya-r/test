@@ -1,7 +1,10 @@
 export type Post = {
-  id: string
-  slug: string
+  date: string
   title: string
-  excerpt: string
-  publishedAt: string
+  tag: string[]
+  content: string
+  thumb?: string
+  likes?: number
 }
+
+export type PostPreview = Pick<Post, 'date' | 'title' | 'tag' | 'thumb' | 'likes'>
