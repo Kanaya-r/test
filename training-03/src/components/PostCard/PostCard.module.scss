@@ -1,0 +1,52 @@
+.postCard {
+  width: 300px;
+  background-color: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  
+  .thumb {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+  }
+
+  .content {
+    padding: 1rem;
+    font-size: 1rem;
+    color: #000;
+
+  }
+
+  a {
+    color: currentColor;
+  }
+
+  ul.tags {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    li {
+      padding: 0.25rem 0.5rem;
+      border: 1px solid currentColor;
+      color: #1b1b1b;
+      font-size: 0.7rem;
+    }
+  }
+
+  .title {
+    font-size: 2rem;
+    margin-block: 0.2em;
+  }
+
+  header {
+    display: grid;
+    row-gap: 0.2rem;
+  }
+
+  footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
