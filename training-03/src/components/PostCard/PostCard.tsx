@@ -13,7 +13,7 @@ export function PostCard({ date, title, tags }: Props) {
 
   return (
     <article className={ Styles.postCard }>
-      <img className={ Styles.thumb } src="/dummy_400x300.png" alt="" />
+      <img className={ Styles.thumb } src="/next-training/dummy_400x300.png" alt="" />
       <div className={ Styles.content }>
         <header>
           <ul className={ Styles.tags }>
