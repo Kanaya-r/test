@@ -7,7 +7,7 @@ import Footer from '../components/Footer/Footer'
 import 'sanitize.css';
 import 'sanitize.css/forms.css';
 import 'sanitize.css/typography.css';
-import "../styles/globals.scss"
+import "./globals.scss"
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
