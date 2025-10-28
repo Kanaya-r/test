@@ -1,12 +1,16 @@
 import { PostCard } from '@/components/PostCard/PostCard';
-import { posts } from '@/data/posts';
+import { getAllPreviews } from '@/lib/posts';
+import type { PostPreview } from "@/types/post";
+
 
 import styles from './CardList.module.scss';
 
-export function CardList() {
+export function CardList({ topPosts }: { topPosts?: PostPreview[] }) {
+  const getAllPosts = getAllPreviews();
+  const viewPosts = topPosts ? topPosts : getAllPosts;
   return (
     <ul className={styles['blog-list']}>
-      {posts.map(post => (
+      {viewPosts.map(post => (
         <li key={ post.date + post.title }>
           <PostCard
             slug={ post.slug }
