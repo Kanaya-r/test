@@ -1,54 +1,80 @@
-# React + TypeScript + Vite
+# React ToDo App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+初めてのReactを活用したアプリケーション実績です。
+React / TypeScript / Vite の学習として作成した、ToDoアプリです。
+タスクの追加、完了、削除という基本操作を実装しながら、コンポーネント分割と状態管理の流れを確認することを目的にしました。
 
-Currently, two official plugins are available:
+## 実装した機能
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- 入力欄からタスクを追加
+- Enter キーまたは追加ボタンで登録
+- 空文字のタスクは追加できないように制御
+- 未完了タスクと完了済みタスクを分けて表示
+- 未完了タスクを完了済みに移動
+- タスクの削除
+- Headless UI の Dialog を使った概要モーダル
+- react-icons を使った操作ボタンのアイコン表示
 
-## Expanding the ESLint configuration
+## 使用技術
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- React 19
+- TypeScript
+- Vite
+- Tailwind CSS
+- Headless UI
+- react-icons
+- ESLint
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## セットアップ
+
+```bash
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 開発サーバーの起動
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+```bash
+npm run dev
+```
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+起動後、ターミナルに表示されたローカルURLをブラウザで開きます。
+
+## ビルド
+
+```bash
+npm run build
+```
+
+TypeScript のビルドチェックを行ったうえで、Vite で本番用ファイルを生成します。
+
+## Lint
+
+```bash
+npm run lint
+```
+
+## 実装メモ
+
+タスク一覧の状態管理には `useReducer` を使いました。
+追加、削除、完了状態の切り替えを reducer に集約することで、状態更新の処理を `App.tsx` の中で追いやすくしています。
+
+タスクの型は `Todo` として定義し、`status` には `active` と `completed` の2種類を持たせました。
+表示側ではこの `status` を見て、未完了リストと完了済みリストに分けています。
+
+入力コンポーネントでは `useRef` で入力値を参照し、`useState` でボタンの disabled 状態を管理しています。
+日本語入力中の Enter で誤って登録されないように、`e.nativeEvent.isComposing` も確認しています。
+
+## ディレクトリ構成
+
+```txt
+src/
+  App.tsx
+  App.css
+  index.css
+  main.tsx
+  components/
+    ActiveTodoList.tsx
+    CompletedTodoList.tsx
+    CreateTodoInput.tsx
+    Modal.tsx
 ```
